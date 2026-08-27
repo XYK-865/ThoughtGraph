@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Clock, FileText, Sparkles, Network, Boxes, FolderKanban, Loader2, Link as LinkIcon } from 'lucide-react';
+import { Clock, FileText, Sparkles, Network, Boxes, FolderKanban, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { formatDistanceToNow, format, subDays, isAfter } from 'date-fns';
 import { base44 } from '@/api/base44Client';
