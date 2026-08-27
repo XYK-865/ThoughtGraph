@@ -1,0 +1,65 @@
+{
+    "name": "Source",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "title": "Title"
+        },
+        "type": {
+            "type": "string",
+            "title": "Source Type",
+            "enum": [
+                "note",
+                "text",
+                "file",
+                "markdown",
+                "url"
+            ],
+            "default": "note"
+        },
+        "content": {
+            "type": "string",
+            "title": "Raw Content",
+            "default": ""
+        },
+        "fileUrl": {
+            "type": "string",
+            "title": "File URL",
+            "default": ""
+        },
+        "status": {
+            "type": "string",
+            "title": "Processing Status",
+            "enum": [
+                "raw",
+                "processed"
+            ],
+            "default": "raw"
+        },
+        "projectIds": {
+            "type": "array",
+            "title": "Associated Project IDs",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "tags": {
+            "type": "array",
+            "title": "Tags",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "wordCount": {
+            "type": "number",
+            "title": "Word Count",
+            "default": 0
+        }
+    },
+    "required": [
+        "title"
+    ]
+}

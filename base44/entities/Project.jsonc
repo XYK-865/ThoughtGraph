@@ -1,0 +1,50 @@
+{
+    "name": "Project",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "Name"
+        },
+        "description": {
+            "type": "string",
+            "title": "Description",
+            "default": ""
+        },
+        "color": {
+            "type": "string",
+            "title": "Accent Color",
+            "default": "#eab308"
+        },
+        "icon": {
+            "type": "string",
+            "title": "Icon Name",
+            "default": "FolderKanban"
+        },
+        "status": {
+            "type": "string",
+            "title": "Status",
+            "enum": [
+                "active",
+                "archived"
+            ],
+            "default": "active"
+        },
+        "coreThemes": {
+            "type": "array",
+            "title": "Core Themes",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "lastActivityAt": {
+            "type": "string",
+            "title": "Last Activity At",
+            "format": "date-time"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

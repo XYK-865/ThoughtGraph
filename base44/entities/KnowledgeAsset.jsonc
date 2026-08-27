@@ -1,0 +1,59 @@
+{
+    "name": "KnowledgeAsset",
+    "type": "object",
+    "properties": {
+        "sourceId": {
+            "type": "string",
+            "title": "Source ID"
+        },
+        "projectIds": {
+            "type": "array",
+            "title": "Associated Project IDs",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "summary": {
+            "type": "string",
+            "title": "Summary",
+            "default": ""
+        },
+        "keyPoints": {
+            "type": "array",
+            "title": "Key Points",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "tags": {
+            "type": "array",
+            "title": "Tags",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "entities": {
+            "type": "array",
+            "title": "Extracted Entities",
+            "items": {
+                "type": "string"
+            },
+            "default": []
+        },
+        "status": {
+            "type": "string",
+            "title": "Status",
+            "enum": [
+                "draft",
+                "confirmed"
+            ],
+            "default": "draft"
+        }
+    },
+    "required": [
+        "sourceId"
+    ]
+}

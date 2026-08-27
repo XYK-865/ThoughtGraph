@@ -1,0 +1,48 @@
+{
+  "name": "GraphEdge",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "title": "Project ID"
+    },
+    "fromNodeId": {
+      "type": "string",
+      "title": "From Node ID"
+    },
+    "toNodeId": {
+      "type": "string",
+      "title": "To Node ID"
+    },
+    "fromLabel": {
+      "type": "string",
+      "title": "From Label",
+      "default": ""
+    },
+    "toLabel": {
+      "type": "string",
+      "title": "To Label",
+      "default": ""
+    },
+    "relation": {
+      "type": "string",
+      "title": "Relation",
+      "default": "related_to"
+    },
+    "assetId": {
+      "type": "string",
+      "title": "Asset ID",
+      "default": ""
+    },
+    "weight": {
+      "type": "number",
+      "title": "Weight",
+      "default": 1
+    }
+  },
+  "required": [
+    "projectId",
+    "fromNodeId",
+    "toNodeId"
+  ]
+}

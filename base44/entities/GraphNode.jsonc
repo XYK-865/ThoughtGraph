@@ -1,0 +1,47 @@
+{
+  "name": "GraphNode",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "title": "Project ID"
+    },
+    "label": {
+      "type": "string",
+      "title": "Label"
+    },
+    "kind": {
+      "type": "string",
+      "title": "Kind",
+      "enum": [
+        "entity",
+        "keypoint"
+      ],
+      "default": "entity"
+    },
+    "entityType": {
+      "type": "string",
+      "title": "Entity Type",
+      "default": "concept"
+    },
+    "assetId": {
+      "type": "string",
+      "title": "Asset ID",
+      "default": ""
+    },
+    "sourceId": {
+      "type": "string",
+      "title": "Source ID",
+      "default": ""
+    },
+    "weight": {
+      "type": "number",
+      "title": "Weight",
+      "default": 1
+    }
+  },
+  "required": [
+    "projectId",
+    "label"
+  ]
+}
