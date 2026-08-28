@@ -1,4 +1,4 @@
-# Base44 Project
+# Base44 Project - ThoughtGraph
 
 Use this repository to run and edit the app locally, then publish changes back through Base44.
 
