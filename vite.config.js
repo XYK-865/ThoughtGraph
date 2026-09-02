@@ -1,9 +1,11 @@
 import base44 from "@base44/vite-plugin"
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: mode === 'github' ? '/ThoughtGraph/' : '/',
   plugins: [
     base44({
       // Support for legacy code that imports the base44 SDK with @/integrations, @/entities, etc.
@@ -15,5 +17,13 @@ export default defineConfig({
       visualEditAgent: true
     }),
     react(),
-  ]
-});
+  ],
+  build: {
+    rollupOptions: {
+      input: {
+        app: fileURLToPath(new URL('./index.html', import.meta.url)),
+        demo: fileURLToPath(new URL('./demo.html', import.meta.url)),
+      },
+    },
+  },
+}));

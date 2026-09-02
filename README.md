@@ -1,77 +1,79 @@
-# Base44 Project - ThoughtGraph
+# ThoughtGraph
 
-Use this repository to run and edit the app locally, then publish changes back through Base44.
+> 把零散资料转化为可追溯、可连接、可对话的产品知识。
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+[在线体验 AI Demo](https://xyk-865.github.io/ThoughtGraph/) · [直接打开独立 Demo 页](https://xyk-865.github.io/ThoughtGraph/demo.html)
 
-## Prerequisites
+![ThoughtGraph AI Demo](./artifacts/thoughtgraph-demo.png)
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the Base44 CLI: `npm install -g base44@latest`.
+ThoughtGraph 是一个面向知识工作者的 AI 知识理解工作台。它不止保存资料，而是把原始材料、AI 洞察、知识关系和回答证据连接成一条可复用的认知链路。
 
-See the [Base44 CLI docs](https://docs.base44.com/developers/references/cli/get-started/overview) if you want to run Base44 commands directly.
+## 为什么做这个产品
 
-## Run Locally
+传统知识库解决了“资料放在哪里”，但没有解决“我当时为什么认为它重要”。当用户再次需要这些信息时，真正昂贵的不是搜索，而是重新阅读、重新理解和重新建立上下文。
 
-Run the full local development environment from the project root:
+ThoughtGraph 希望验证一个产品假设：如果 AI 能保留结论与原始证据之间的关系，并把分散的理解连接成图谱，知识复用会不会更快、更可信？
 
-```bash
-base44 dev
+## Demo 展示什么
+
+无需登录，约 3 分钟可以体验完整闭环：
+
+1. **资料输入**：把用户访谈、竞品研究和需求草案放进同一个项目语境。
+2. **AI 提炼**：跨材料识别用户痛点、设计原则和产品机会，并展示置信度。
+3. **关系图谱**：把洞察组织成可交互的因果、支撑与目标关系。
+4. **溯源问答**：基于项目知识回答业务问题，每个关键判断都能回到原始证据。
+
+静态 Demo 使用预设数据，目的是稳定展示产品逻辑，不伪装成实时模型输出。仓库中的完整产品版本使用 Base44 实体、后端函数和 LLM 集成完成真实的数据处理与问答。
+
+## 产品设计取舍
+
+- **信任优先于“像人”**：AI 结论默认附带引用，让用户能校验和修正。
+- **结构优先于堆功能**：围绕“输入 → 理解 → 连接 → 使用”构建单一主链路。
+- **人保留最终判断**：原文事实、AI 归纳和用户判断在产品中有清晰边界。
+- **Demo 零门槛**：招聘评审页不需要账号、API Key 或后端服务。
+
+## 技术架构
+
+```text
+React + Vite
+├── Portfolio Demo       静态预设数据 / GitHub Pages
+├── Base44 SDK           认证、实体存储、文件上传
+├── Backend Functions    内容提炼、图谱构建、上下文问答
+└── Three.js             3D 知识宇宙可视化
 ```
 
-`base44 dev` starts the local Base44 development backend and, when this app is configured for it, also starts the frontend dev server for you. Use the frontend URL printed by the command.
+核心数据模型包括 `Project`、`Source`、`KnowledgeAsset`、`GraphNode` 和 `GraphEdge`。完整版本的问答函数会按模式召回项目资料或历史知识，并返回带来源引用的答案。
 
-For example, when the Base44 project config includes a `serveCommand`, `base44 dev` can launch the frontend too:
-
-```json5
-{
-  "site": {
-    "serveCommand": "npm run dev"
-  }
-}
-```
-
-In a Base44 project this lives in `base44/config.jsonc`.
-
-## Run Only The Frontend
-
-If you only want to work on the frontend against the hosted Base44 backend, run:
+## 本地运行
 
 ```bash
+npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite.
+- 完整产品：打开终端给出的根地址，需要配置 Base44 环境。
+- 招聘 Demo：打开 `/demo.html`，不需要 Base44 或 API Key。
 
-## Use The Hosted Backend
-
-For frontend-only development, create or update `.env.local` in the project root:
-
-```bash
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=https://your-app.base44.app
-```
-
-`VITE_BASE44_APP_ID` identifies the Base44 app.
-
-`VITE_BASE44_APP_BASE_URL` tells the Base44 Vite plugin where to send local `/api` requests. Point it at your deployed Base44 app URL when you want the local frontend to use the hosted backend.
-
-When you use `base44 dev`, the command injects the local Base44 values for you, so `.env.local` is mainly needed for frontend-only workflows.
-
-## Publish Your Changes
-
-After pushing your changes to git, open the Base44 dashboard and publish the app:
+生产构建：
 
 ```bash
-base44 dashboard open
+npm run build
 ```
 
-## Docs & Support
+GitHub Pages 构建：
 
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
+```bash
+npm run build:github
+```
 
-Base44 CLI command reference: [https://docs.base44.com/developers/references/cli/commands/introduction](https://docs.base44.com/developers/references/cli/commands/introduction)
+首次发布前，在仓库 **Settings → Pages → Build and deployment** 中把 Source 设为 **GitHub Actions**。之后每次推送到 `main`，[发布工作流](./.github/workflows/deploy-demo.yml) 都会自动构建并更新作品 Demo。
 
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+## 下一步验证
+
+- 用“完成一次信息复用所需时间”验证效率价值。
+- 用引用打开率、答案修正率衡量信任与质量。
+- 用跨周复用历史知识的用户占比衡量长期留存。
+
+---
+
+Built as an AI product case study: grounded synthesis, knowledge graph, and evidence-backed Q&A.
